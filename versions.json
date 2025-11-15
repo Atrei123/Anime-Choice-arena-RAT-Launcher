@@ -1,0 +1,19 @@
+{
+  "current_patch_version": "1.0.0",
+  "patch_files": [
+    {
+      "name": "Others 4.3.mix",
+      "destination": "redist\\miles",
+      "url": "https://raw.githubusercontent.com/Ваш_Профиль/Ваш_Репозиторий/main/releases/others_4.3.mix"
+    },
+    {
+      "name": "ChoiceModels_3.3.mix",
+      "destination": "redist\\miles",
+      "url": "https://raw.githubusercontent.com/Ваш_Профиль/Ваш_Репозиторий/main/releases/models_3.3.mix"
+    }
+  ],
+  "launcher_update": {
+    "latest_version": "0.5",
+    "update_url": "https://адрес_скачивания_нового_лаунчера.exe"
+  }
+}
