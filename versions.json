@@ -1,29 +1,29 @@
 {
-  "current_patch_version": "1.0.0",
+  "current_patch_version": "1.1.0",
   "patch_files": [
     {
       "name": "ChoiceModels_3.3.mix",
       "destination": "redist\\models",
-      "url": "https://drive.google.com/uc?export=download&id=1dLcpIy7bEFzNcS2THwMvH0u8qf-lDSBK"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix"
     },
     {
       "name": "MusicForChoiceBattle.mix",
       "destination": "Sound",
-      "url": "https://drive.google.com/uc?export=download&id=1zsvzfcVkvaL_uWAfyKm1vbwe-bTm8Qm-"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
       "destination": "Sound",
-      "url": "https://drive.google.com/uc?export=download&id=1efIxHNbeqZvElx7Suti51IeEUCnqvD7v"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix"
     },
     {
       "name": "[Others 4.3.mix",
       "destination": "redist\\effects",
-      "url": "https://drive.google.com/uc?export=download&id=1-HtwwRL5Ji19II-oNcgC7cZIPrAK9KeQ"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers%204.3.mix"
     }
   ],
   "launcher_update": {
-    "latest_version": "0.7",
+    "latest_version": "1.1",
     "update_url": ""
   }
 }
