@@ -2,18 +2,28 @@
   "current_patch_version": "1.0.0",
   "patch_files": [
     {
-      "name": "Others 4.3.mix",
-      "destination": "redist\\miles",
-      "url": "https://raw.githubusercontent.com/Ваш_Профиль/Ваш_Репозиторий/main/releases/others_4.3.mix"
+      "name": "Models_Pack.mix",
+      "destination": "redist\\models",
+      "url": "https://drive.google.com/uc?export=download&id=1dLcpIy7bEFzNcS2THwMvH0u8qf-lDSBK"
     },
     {
-      "name": "ChoiceModels_3.3.mix",
-      "destination": "redist\\miles",
-      "url": "https://raw.githubusercontent.com/Ваш_Профиль/Ваш_Репозиторий/main/releases/models_3.3.mix"
+      "name": "Music_Pack.mix",
+      "destination": "Sound",
+      "url": "https://drive.google.com/uc?export=download&id=1zsvzfcVkvaL_uWAfyKm1vbwe-bTm8Qm-"
+    },
+    {
+      "name": "Sound_Pack.mix",
+      "destination": "Sound",
+      "url": "https://drive.google.com/uc?export=download&id=1efIxHNbeqZvElx7Suti51IeEUCnqvD7v"
+    },
+    {
+      "name": "Effects_Pack.mix",
+      "destination": "redist\\effects",
+      "url": "https://drive.google.com/uc?export=download&id=1-HtwwRL5Ji19II-oNcgC7cZIPrAK9KeQ"
     }
   ],
   "launcher_update": {
-    "latest_version": "0.5",
-    "update_url": "https://адрес_скачивания_нового_лаунчера.exe"
+    "latest_version": "0.7",
+    "update_url": ""
   }
 }
