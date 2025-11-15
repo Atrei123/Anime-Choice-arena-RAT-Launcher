@@ -3,22 +3,22 @@
   "patch_files": [
     {
       "name": "ChoiceModels_3.3.mix",
-      "destination": "redist\\models",
+      "destination": "\redist\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix"
     },
     {
       "name": "MusicForChoiceBattle.mix",
-      "destination": "Sound",
+      "destination": "\redist\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
-      "destination": "Sound",
+      "destination": "\redist\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix"
     },
     {
       "name": "[Others 4.3.mix",
-      "destination": "redist\\effects",
+      "destination": "\redist\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers%204.3.mix"
     }
   ],
