@@ -20,13 +20,13 @@
       "name": "[Others 4.3.mix",
       "destination": "redist\\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers%204.3.mix"
-    }
+    },  <--- ДОБАВЛЕНА ЗАПЯТАЯ
     {
       "name": "Ujapi Files",
       "destination": "",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.rar"
-    }
-        {
+    },  <--- ДОБАВЛЕНА ЗАПЯТАЯ
+    {
       "name": "UjAPILauncher",
       "destination": "",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe"
