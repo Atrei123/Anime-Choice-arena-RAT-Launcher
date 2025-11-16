@@ -7,9 +7,9 @@
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix"
     },
     {
-      "name": "MusicForChoiceBattle.mix",
+      "name": "MusicForChoiceBattle 1.mix",
       "destination": "redist\\miles",
-      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/ChoiceSounds_3.3.mix"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
