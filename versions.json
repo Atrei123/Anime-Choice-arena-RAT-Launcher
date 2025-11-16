@@ -25,7 +25,7 @@
       "name": "Ujapi Files.zip",
       "destination": "",
       "action": "unzip",
-      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/UjAPIFiles.zip" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip" 
     },
     {
       "name": "UjAPILauncher.exe", 
