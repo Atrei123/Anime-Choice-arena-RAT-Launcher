@@ -4,33 +4,33 @@
     {
       "name": "ChoiceModels_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix"
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/ChoiceModels_3.3.mix"
     },
     {
       "name": "MusicForChoiceBattle.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix"
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/ChoiceSounds_3.3.mix"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix"
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/MusicForChoiceBattle.mix"
     },
     {
-      "name": "[Others 4.3.mix",
+      "name": "Others_4_3.mix", // ИСПРАВЛЕНО
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers%204.3.mix"
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/Others_4_3.mix" // ИСПРАВЛЕНО
     },
     {
-      "name": "Ujapi Files",
+      "name": "Ujapi Files.zip", // ДОБАВЛЕНО РАСШИРЕНИЕ
       "destination": "",
       "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip"
-    }, 
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/UjAPIFiles.zip" // ИСПРАВЛЕНО
+    },
     {
-      "name": "UjAPILauncher",
+      "name": "UjAPILauncher.exe", // ДОБАВЛЕНО РАСШИРЕНИЕ
       "destination": "",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe"
+      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/UjAPILauncher.exe" // ИСПРАВЛЕНО
     }
   ],
   "launcher_update": {
