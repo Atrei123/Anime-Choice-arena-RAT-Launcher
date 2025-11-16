@@ -1,5 +1,5 @@
 {
-  "current_patch_version": "1.1.0",
+  "current_patch_version": "1.2.0",
   "patch_files": [
     {
       "name": "ChoiceModels_3.3.mix",
@@ -20,6 +20,16 @@
       "name": "[Others 4.3.mix",
       "destination": "redist\\miles",
       "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers%204.3.mix"
+    }
+    {
+      "name": "Ujapi Files",
+      "destination": "",
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/tree/7f3c73f340c86e4f308ea8954e277c885ffb2fdd/UjAPIFiles"
+    }
+        {
+      "name": "UjAPILauncher",
+      "destination": "",
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe"
     }
   ],
   "launcher_update": {
