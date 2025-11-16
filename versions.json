@@ -30,7 +30,7 @@
     {
       "name": "UjAPILauncher.exe", 
       "destination": "",
-      "url": "https://raw.githubusercontent.com/Atrei123/Anime-Choice-arena-RAT-Launcher/main/UjAPILauncher.exe" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe" 
     }
   ],
   "launcher_update": {
