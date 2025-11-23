@@ -4,39 +4,46 @@
     {
       "name": "ChoiceModels_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix",
+      "md5": "BF2EE22E40A87176801791A27056692A"
     },
     {
       "name": "MusicForChoiceBattle.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix",
+      "md5": "E1061949F691A640D98C50828938E117"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix"
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix",
+      "md5": "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
     },
     {
       "name": "Others_4_3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers_4.3.mix" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/%5BOthers_4.3.mix",
+      "md5": "2C8467DE2FB73BC93AC0E73695B7202E"
     },
     {
       "name": "Ujapi Files.zip",
       "destination": "",
       "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip",
+      "md5": "BBB0ADEF925010CFA8A83BBEF08B0ED2"
     },
     {
       "name": "UjAPILauncher.exe", 
       "destination": "",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe",
+      "md5": "5758EBACDFE992B6E776E9A2E9747B73" 
     },
     {
       "name": "Gproxy.zip",
       "destination": "",
       "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip" 
+      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip",
+      "md5": "52153F3097BE6D6738164C4C14D33981"
     }
    ],
   "launcher_update": {
