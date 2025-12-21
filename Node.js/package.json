@@ -1,0 +1,10 @@
+{
+  "name": "irina-bot-rating",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "w3gjs": "^2.1.0"
+  }
+}
