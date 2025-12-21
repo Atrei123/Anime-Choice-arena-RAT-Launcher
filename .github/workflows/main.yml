@@ -2,13 +2,12 @@ name: Update Rating 24/7
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # Запуск каждые 30 минут
-  workflow_dispatch:      # Кнопка для ручного запуска в меню Actions
+    - cron: '*/30 * * * *' 
+  workflow_dispatch:      
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    # Даем права на запись в репозиторий, чтобы сохранять history.json
     permissions:
       contents: write
 
@@ -20,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
+          # Убрали строку с кэшем, чтобы не было Warning
 
       - name: Install dependencies
         run: npm install
