@@ -45,6 +45,7 @@ function getDateFromFilename(filename) {
 // Обработка одной игры
 async function processOneGame(url, fileName) {
     console.log(`\n🔄 Скачиваю: ${fileName}`);
+    const os = require('os');
     const filePath = path.resolve(__dirname, 'temp.w3g');
     
     try {
@@ -207,3 +208,4 @@ async function main() {
 
 
 main();
+
