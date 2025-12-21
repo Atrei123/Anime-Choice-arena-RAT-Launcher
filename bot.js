@@ -7,7 +7,7 @@ const W3GReplay = w3gjs_lib.default || w3gjs_lib;
 
 // --- НАСТРОЙКИ ---
 const BASE_URL = "https://replays.irinabot.ru/19374/";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_ymaRMhxbHF2xrl8w1oGdpO_8RTDhdfYGcObgQoOWkg3KxZ3aO8IwLkDh1TYt_vOy/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUhzbm-xpxCoQtJn0ndUsLQfpGEXBmLP2dCs8ky9MkQ2M3_5EKkWHnz99LKc3Fppc5/exec";
 
 // 📅 С какой даты начинать считать рейтинг?
 const START_DATE = new Date('2025-12-01T00:00:00'); 
@@ -204,5 +204,6 @@ async function main() {
         console.error("Critical Error:", err);
     }
 }
+
 
 main();
