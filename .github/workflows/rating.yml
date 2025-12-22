@@ -2,7 +2,7 @@ name: Update Rating 24/7
 
 on:
   schedule:
-    - cron: '*/30 * * * *' 
+    - cron: '*/60 * * * *' 
   workflow_dispatch:      
 
 jobs:
