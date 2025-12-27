@@ -2,7 +2,7 @@ name: Auto Scraper & Rating
 
 on:
   schedule:
-    - cron: '*/20 * * * *'  # Запускать каждые 20 минут
+    - cron: '*/60 * * * *'  # Запускать каждые 20 минут
   workflow_dispatch:        # Кнопка ручного запуска
 
 permissions:
