@@ -1,46 +1,42 @@
-﻿import os
+import os
 import zlib
 import struct
 import re
-import csv
 import subprocess
 import json
 import sys
+import requests
 
-# ТАБЛИЦА ЦВЕТОВ
+# --- КОНФИГУРАЦИЯ ---
+API_URL = "https://script.google.com/macros/s/AKfycbzUhzbm-xpxCoQtJn0ndUsLQfpGEXBmLP2dCs8ky9MkQ2M3_5EKkWHnz99LKc3Fppc5/exec"
+
 COLOR_TO_SLOT = {
     "#ff0303": 0, "#0042ff": 1, "#1ce6b9": 2, "#540081": 3, "#fffc00": 4,
     "#fe8a0e": 5, "#20c000": 6, "#e55bb0": 7, "#959697": 8, "#7ebff1": 9
 }
 
-# --- 1. ВЫЗОВ JS ---
 def get_names_from_js(filename):
     if not os.path.exists("parser.js"): return {}
     try:
         res = subprocess.run(["node", "parser.js", filename], capture_output=True, text=True, encoding='utf-8', errors='replace')
-        raw = res.stdout.strip()
-        match = re.search(r'(\{.*\})', raw)
+        match = re.search(r'(\{.*\})', res.stdout.strip())
         if match:
             data = json.loads(match.group(1))
             return {int(k): v for k, v in data.items()}
     except: pass
     return {}
 
-# --- 2. ДЕКОДЕР ЧИСЛА В ID ГЕРОЯ ---
 def decode_hero_int(val_int):
     try:
         if val_int == 0: return "-"
         chars = [chr((val_int >> 24) & 0xFF), chr((val_int >> 16) & 0xFF), chr((val_int >> 8) & 0xFF), chr(val_int & 0xFF)]
         res = "".join(chars).strip().replace('\x00', '')
-        if len(res) == 4 and all(c.isalnum() for c in res):
-            return res
+        if len(res) == 4 and all(c.isalnum() for c in res): return res
         rev = res[::-1]
-        if len(rev) == 4 and all(c.isalnum() for c in rev):
-            return rev
+        if len(rev) == 4 and all(c.isalnum() for c in rev): return rev
         return "-"
     except: return "-"
 
-# --- 3. РАСПАКОВКА ---
 def decompress(filename):
     if not os.path.exists(filename): return None
     decompressed = bytearray()
@@ -64,150 +60,131 @@ def decompress(filename):
         except: i += 1
     return decompressed
 
-# --- 4. АНАЛИЗАТОР ---
-def analyze(filename):
-    print(f"🚀 Анализ: {filename}")
-    
+def analyze_and_upload(filename):
+    print(f"🚀 Обработка файла: {filename}")
     js_players = get_names_from_js(filename)
     raw = decompress(filename)
-    if not raw: 
-        print("❌ Ошибка чтения файла")
-        return
+    if not raw: return
 
     text = raw.decode('latin-1', errors='ignore')
-    
     players_by_slot = {}
-    
-    # 1. Заполняем базу по Слотам
+
+    # 1. Заполняем базу игроков
     for pid, info in js_players.items():
         name = info.get('name')
         if not name: continue
-        
         slot = info.get('slot', -1)
         if slot == -1 and 'color' in info:
             color = info['color'].lower()
             if color in COLOR_TO_SLOT: slot = COLOR_TO_SLOT[color]
-
-        if slot >= 24 or slot < 0: continue 
-
+        if slot >= 24 or slot < 0: continue
+        
         team_num = 1 if slot < 5 else 2
-
         players_by_slot[slot] = {
-            "name": name,
-            "slot": slot,
-            "team": team_num,
-            "hero": "-",
-            "rounds": 0,
-            "status": "Played"
+            "name": name, 
+            "slot": slot, 
+            "team": team_num, 
+            "hero": "Unknown", 
+            "rounds": 0
         }
 
-    # 2. ПАРСИНГ ГЕРОЕВ (ЧИСЛОВОЙ + СТРОКОВЫЙ)
-    # Числовой (приоритет)
+    # 2. Парсинг героев
     hero_int_matches = re.findall(r'VarP\W+(\d+)\W+Picked_hero\D+?(\d+)', text, re.IGNORECASE)
     for pid_str, val_str in hero_int_matches:
-        slot = int(pid_str)
         try:
+            slot = int(pid_str)
             decoded = decode_hero_int(int(val_str))
             if slot in players_by_slot and decoded != "-":
                 players_by_slot[slot]["hero"] = decoded
         except: pass
 
-    # Строковый (резерв)
-    hero_str_matches = re.findall(r'VarP\W+(\d+)\W+Picked_hero\W+\w+\W+([a-zA-Z0-9]{4})\b', text, re.IGNORECASE)
-    for pid_str, val in hero_str_matches:
-        slot = int(pid_str)
-        if slot in players_by_slot and players_by_slot[slot]["hero"] == "-":
-             if val.lower() != "none" and val.lower() != "null":
-                players_by_slot[slot]["hero"] = val
-
-    # 3. ПАРСИНГ ЦЕЛИ (Rounds_to_win)
+    # 3. Парсинг счета (Won_rounds)
     game_goal = 0
     goal_matches = re.findall(r'VarP\W+\d+\W+Rounds_to_win\D+?(\d+)', text, re.IGNORECASE)
-    if goal_matches:
-        try: game_goal = int(goal_matches[0])
-        except: pass
+    if goal_matches: game_goal = int(goal_matches[0])
 
-    # 4. ПАРСИНГ СЧЕТА (Won_rounds)
     score_matches = re.findall(r'VarP\W+(\d+)\W+Won_rounds\D+?(\d+)', text, re.IGNORECASE)
     for pid_str, val_str in score_matches:
-        slot = int(pid_str)
         try:
+            slot = int(pid_str)
             val = int(val_str)
             if slot in players_by_slot:
                 if val > players_by_slot[slot]["rounds"]:
                     players_by_slot[slot]["rounds"] = val
         except: pass
 
-    # 5. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+    # --- ИЗМЕНЕНИЕ 1: Жесткое имя карты ---
+    map_name = "Anime Choice Battle"
+
+    # --- ИЗМЕНЕНИЕ 2: Логика Ban Mode ---
     game_mode = "Normal"
     gm_match = re.search(r'VarP\W+\d+\W+Game_Mode\W+\w+\W+([^\s\x00]+)', text, re.IGNORECASE)
-    if gm_match: game_mode = gm_match.group(1)
+    if gm_match: 
+        raw_mode = gm_match.group(1)
+        if "ban" in raw_mode.lower():
+            game_mode = "Ban Mode"
+        else:
+            game_mode = raw_mode
 
-    # --- ИТОГИ И СИНХРОНИЗАЦИЯ КОМАНД ---
+    # --- ОПРЕДЕЛЕНИЕ ПОБЕДИТЕЛЯ ---
     t1 = [p for p in players_by_slot.values() if p['team'] == 1]
     t2 = [p for p in players_by_slot.values() if p['team'] == 2]
 
-    # Находим лучший счет в команде
     s1_score = max([p['rounds'] for p in t1], default=0)
     s2_score = max([p['rounds'] for p in t2], default=0)
 
-    # !!! СИНХРОНИЗАЦИЯ !!!
-    # Присваиваем командный счет всем участникам (чиним нули у Motorka и 2thedevil2)
+    # Синхронизация счета
     for p in t1: p['rounds'] = s1_score
     for p in t2: p['rounds'] = s2_score
 
-    winner = "Draw"
-    if s1_score > s2_score: winner = "Team 1"
-    elif s2_score > s1_score: winner = "Team 2"
+    winner_team = 0
+    if s1_score > s2_score: winner_team = 1
+    elif s2_score > s1_score: winner_team = 2
     elif game_goal > 0 and (s1_score >= game_goal or s2_score >= game_goal):
-         if s1_score >= s2_score: winner = "Team 1"
-         else: winner = "Team 2"
+         if s1_score >= s2_score: winner_team = 1
+         else: winner_team = 2
 
-    map_name = "Unknown"
-    map_match = re.search(r'mapname\W+([^\x00\r\n]+)', text, re.IGNORECASE)
-    if map_match: 
-        map_name = re.sub(r'\.w3[xm]$', '', map_match.group(1), flags=re.IGNORECASE).strip()
+    if winner_team == 0:
+        print("⚠️ Ничья или игра не состоялась, пропускаем.")
+        os.remove(filename)
+        return
 
-    # --- ВЫВОД ---
-    print("\n" + "="*70)
-    print(f"🏆 {winner} (Счет {s1_score} : {s2_score})")
-    print(f"🗺️  {map_name} | Mode: {game_mode} | Goal: {game_goal}")
-    print("="*70)
-    print(f"{'Slot':<4} | {'Team':<6} | {'Nick':<20} | {'Hero':<6} | {'Rnd':<3} | {'Status'}")
-    print("-" * 70)
-    
-    t1.sort(key=lambda x: x['slot'])
-    t2.sort(key=lambda x: x['slot'])
-    
-    def get_status(team, winner_team):
-        if winner_team == "Draw": return "Draw"
-        if (team == 1 and winner_team == "Team 1") or (team == 2 and winner_team == "Team 2"):
-            return "Winner"
-        return "Loser"
+    # --- ОТПРАВКА ДАННЫХ ---
+    payload = {
+        "action": "add_game", # Важно для Google Script
+        "file_name": os.path.basename(filename),
+        "map_name": map_name,
+        "mode": game_mode,     # Отправляем новый режим
+        "winner_team": winner_team,
+        "score_t1": s1_score,  # Отправляем счет T1
+        "score_t2": s2_score,  # Отправляем счет T2
+        "players": list(players_by_slot.values())
+    }
 
-    for p in t1:
-        print(f"{p['slot']:<4} | T1     | {p['name']:<20} | {p['hero']:<6} | {p['rounds']:<3} | {get_status(1, winner)}")
-    print("-" * 70)
-    for p in t2:
-        print(f"{p['slot']:<4} | T2     | {p['name']:<20} | {p['hero']:<6} | {p['rounds']:<3} | {get_status(2, winner)}")
-    print("="*70)
-
-    # CSV
     try:
-        with open("last_game_stats.csv", 'w', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f, delimiter=';')
-            writer.writerow(["Map", "Mode", "Winner", "Player", "Slot", "Team", "Hero", "Rounds", "Status"])
-            for p in t1 + t2:
-                writer.writerow([
-                    map_name, game_mode, winner,
-                    p["name"], p["slot"], f"Team {p['team']}", p["hero"], p["rounds"], 
-                    get_status(p['team'], winner)
-                ])
-        print("💾 CSV файл сохранен.")
+        print(f"📤 Отправка: {map_name} ({game_mode}). Счет {s1_score}:{s2_score}")
+        r = requests.post(API_URL, json=payload)
+        
+        if r.status_code == 200 and "Success" in r.text:
+            print("✅ Данные сохранены!")
+            os.remove(filename)
+        elif "Skipped" in r.text:
+            print("⚠️ Игра уже была записана.")
+            os.remove(filename)
+        else:
+            print(f"❌ Ошибка сервера: {r.text}")
+            
     except Exception as e:
-        print(f"⚠️ Ошибка CSV: {e}")
+        print(f"❌ Ошибка сети: {e}")
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1: f = sys.argv[1]
-    else: f = input("Файл .w3g: ").strip().replace('"','')
-    analyze(f)
+    replay_dir = "replays"
+    if not os.path.exists(replay_dir): os.makedirs(replay_dir)
+    
+    files = [f for f in os.listdir(replay_dir) if f.endswith(".w3g")]
+    
+    if not files:
+        print("📭 Нет новых реплеев.")
+    else:
+        for f in files:
+            analyze_and_upload(os.path.join(replay_dir, f))
