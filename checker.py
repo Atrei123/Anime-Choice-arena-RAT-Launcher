@@ -7,12 +7,16 @@ import json
 import sys
 import requests
 from urllib.parse import urljoin, unquote
+from datetime import datetime # <--- Добавили для работы с датами
 
 # --- НАСТРОЙКИ ---
 IRINA_URL = "https://replays.irinabot.ru/19374/"
 API_URL = "https://script.google.com/macros/s/AKfycbzUhzbm-xpxCoQtJn0ndUsLQfpGEXBmLP2dCs8ky9MkQ2M3_5EKkWHnz99LKc3Fppc5/exec"
 HISTORY_FILE = "history.json"
 TEMP_DIR = "temp_replays"
+
+# ДАТА ФИЛЬТРАЦИИ (Год, Месяц, День)
+FILTER_DATE = datetime(2025, 12, 1) 
 
 COLOR_TO_SLOT = {
     "#ff0303": 0, "#0042ff": 1, "#1ce6b9": 2, "#540081": 3, "#fffc00": 4,
@@ -30,7 +34,6 @@ def load_history():
         return []
 
 def save_history(processed_files):
-    # Сортируем и сохраняем, чтобы файл был аккуратным
     with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
         json.dump(sorted(list(set(processed_files))), f, indent=2, ensure_ascii=False)
 
@@ -127,10 +130,9 @@ def analyze_game(filename, original_name):
                 players_by_slot[slot]["rounds"] = val
         except: pass
 
-    # 4. Карта и Режим (ЖЕСТКО ЗАДАЕМ ИМЯ КАРТЫ)
+    # 4. Карта и Режим
     map_name = "Anime Choice Battle"
     
-    # Логика Ban Mode
     game_mode = "Normal"
     gm_match = re.search(r'VarP\W+\d+\W+Game_Mode\W+\w+\W+([^\s\x00]+)', text, re.IGNORECASE)
     if gm_match: 
@@ -154,7 +156,7 @@ def analyze_game(filename, original_name):
          if s1_score >= s2_score: winner_team = 1
          else: winner_team = 2
 
-    if winner_team == 0: return None # Ничья или ошибка
+    if winner_team == 0: return None
 
     return {
         "action": "add_game",
@@ -169,35 +171,48 @@ def analyze_game(filename, original_name):
 
 # --- ГЛАВНАЯ ЛОГИКА ---
 def run_cycle():
-    # 1. Загружаем историю
     history = load_history()
     print(f"📂 В истории записей: {len(history)}")
 
-    # 2. Получаем список файлов с сайта
     if not os.path.exists(TEMP_DIR): os.makedirs(TEMP_DIR)
     
     print(f"🌍 Сканируем {IRINA_URL}...")
     try:
         r = requests.get(IRINA_URL, timeout=10)
-        # Ищем все ссылки, заканчивающиеся на .w3g
-        # Ссылка может быть в href="filename.w3g"
+        # Ищем ссылки
         links = re.findall(r'href="([^"]+\.w3g)"', r.text)
-        
-        # Фильтруем дубликаты ссылок
         unique_links = list(set(links))
         
-        print(f"🔍 Найдено файлов на сайте: {len(unique_links)}")
+        print(f"🔍 Найдено файлов всего: {len(unique_links)}")
         
         new_files = []
+        skipped_count = 0
+        
         for link in unique_links:
-            # Декодируем имя файла (убираем %20 и т.д.)
             filename = unquote(link)
+            
+            # --- ФИЛЬТР ПО ДАТЕ ---
+            # Ищем дату в формате YYYY-MM-DD в названии файла
+            date_match = re.search(r"(\d{4}-\d{2}-\d{2})", filename)
+            if date_match:
+                file_date_str = date_match.group(1)
+                try:
+                    file_date = datetime.strptime(file_date_str, "%Y-%m-%d")
+                    # Если файл старее 1 декабря 2025 - пропускаем
+                    if file_date < FILTER_DATE:
+                        continue 
+                except:
+                    pass # Если ошибка парсинга даты, не пропускаем (на всякий случай)
+            # -----------------------
+
             if filename not in history:
                 new_files.append(link)
+            else:
+                skipped_count += 1
         
+        print(f"📅 Пропущено (старые/в истории): {skipped_count}")
         print(f"🆕 Новых файлов для обработки: {len(new_files)}")
 
-        # 3. Скачиваем и обрабатываем новые файлы
         for link in new_files:
             decoded_name = unquote(link)
             file_url = urljoin(IRINA_URL, link)
@@ -205,31 +220,26 @@ def run_cycle():
             
             print(f"⬇️ Скачивание: {decoded_name}")
             try:
-                # Скачиваем файл
                 with requests.get(file_url, stream=True) as rf:
                     rf.raise_for_status()
                     with open(local_path, 'wb') as f:
                         for chunk in rf.iter_content(chunk_size=8192):
                             f.write(chunk)
                 
-                # Анализируем
                 payload = analyze_game(local_path, decoded_name)
                 
                 if payload:
-                    # Отправляем в Google Script
                     print(f"📤 Отправка данных на сервер...")
                     res = requests.post(API_URL, json=payload)
                     if res.status_code == 200:
                         print("✅ Успех!")
-                        history.append(decoded_name) # Добавляем в историю только если сервер принял
+                        history.append(decoded_name)
                     else:
                         print(f"❌ Ошибка сервера: {res.text}")
                 else:
-                    print("⚠️ Невалидная игра (ничья или ошибка парсинга), помечаем как обработанную.")
-                    # Добавляем в историю, чтобы не качать сломанный файл вечно
+                    print("⚠️ Невалидная игра, пропускаем.")
                     history.append(decoded_name)
                 
-                # Удаляем временный файл
                 os.remove(local_path)
                 
             except Exception as e:
@@ -238,7 +248,6 @@ def run_cycle():
     except Exception as e:
         print(f"❌ Ошибка доступа к сайту: {e}")
 
-    # 4. Сохраняем историю
     save_history(history)
     print("💾 История обновлена.")
 
