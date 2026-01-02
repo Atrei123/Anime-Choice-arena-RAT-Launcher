@@ -11,7 +11,7 @@ from datetime import datetime
 
 # --- НАСТРОЙКИ ---
 IRINA_URL = "https://replays.irinabot.ru/19374/"
-API_URL = "https://script.google.com/macros/s/AKfycbz_ymaRMhxbHF2xrl8w1oGdpO_8RTDhdfYGcObgQoOWkg3KxZ3aO8IwLkDh1TYt_vOy/exec"
+API_URL = "https://script.google.com/macros/s/AKfycbzUhzbm-xpxCoQtJn0ndUsLQfpGEXBmLP2dCs8ky9MkQ2M3_5EKkWHnz99LKc3Fppc5/exec"
 HISTORY_FILE = "history.json"
 TEMP_DIR = "temp_replays"
 
@@ -302,4 +302,5 @@ def run_cycle():
 
 if __name__ == "__main__":
     run_cycle()
+
 
