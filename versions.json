@@ -4,19 +4,19 @@
     {
       "name": "ChoiceModels_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceModels_3.3.mix",
+      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceModels_3.3.mix?download=true",
       "md5": "BF2EE22E40A87176801791A27056692A"
     },
     {
       "name": "MusicForChoiceBattle.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/MusicForChoiceBattle.mix",
+      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/MusicForChoiceBattle.mix?download=true",
       "md5": "E1061949F691A640D98C50828938E117"
     },
     {
       "name": "ChoiceSounds_3.3.mix",
       "destination": "redist\\miles",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/ChoiceSounds_3.3.mix",
+      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceSounds_3.3.mix?download=true",
       "md5": "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
     },
     {

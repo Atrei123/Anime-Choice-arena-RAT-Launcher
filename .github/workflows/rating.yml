@@ -1,0 +1,43 @@
+name: Auto Scraper & Rating
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Запускать каждые 20 минут
+  workflow_dispatch:        # Кнопка ручного запуска
+
+permissions:
+  contents: write           # Разрешение на запись в репозиторий
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js (for parser.js)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      
+      - name: Install Node dependencies
+        run: npm install w3gjs
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: pip install requests
+
+      - name: Run Scraper Script
+        run: python checker.py
+
+      - name: Commit updated history
+        # Сохраняем history.json обратно в GitHub
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "📝 Update history.json [skip ci]"
+          file_pattern: 'history.json'
