@@ -228,6 +228,28 @@ def analyze_game(filename, original_name):
                         players_by_slot[slot][stat.lower()] = val
             except: pass
 
+    # 🎒 7. ПРЕДМЕТЫ (Slot1 ... Slot6)
+    for p in players_by_slot.values():
+        for i in range(1, 7):
+            p[f'slot_{i}'] = "-"
+
+    for i in range(1, 7):
+        item_patterns = [
+            r'VarP\W+(\d+)\W+Slot' + str(i) + r'\D+?(\d+)',
+            r'VarP\W+(\d+)\W+Slot_' + str(i) + r'\D+?(\d+)',
+            r'VarP\W+(\d+)\W+Item_' + str(i) + r'\D+?(\d+)',
+            r'VarP\W+(\d+)\W+Item' + str(i) + r'\D+?(\d+)'
+        ]
+        for pattern in item_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for pid_str, val_str in matches:
+                try:
+                    slot = int(pid_str)
+                    item_raw = decode_hero_int(int(val_str))
+                    if slot in players_by_slot and item_raw != "-":
+                        players_by_slot[slot][f'slot_{i}'] = item_raw
+                except: pass
+
     return {
         "action": "add_game",
         "file_name": original_name,
