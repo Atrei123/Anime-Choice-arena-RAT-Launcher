@@ -1,53 +1,53 @@
-{
-  "current_patch_version": "1.3.0",
-  "patch_files": [
-    {
-      "name": "ChoiceModels_3.3.mix",
-      "destination": "redist\\miles",
-      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceModels_3.3.mix?download=true",
-      "md5": "BF2EE22E40A87176801791A27056692A"
-    },
-    {
-      "name": "MusicForChoiceBattle.mix",
-      "destination": "redist\\miles",
-      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/MusicForChoiceBattle.mix?download=true",
-      "md5": "E1061949F691A640D98C50828938E117"
-    },
-    {
-      "name": "ChoiceSounds_3.3.mix",
-      "destination": "redist\\miles",
-      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceSounds_3.3.mix?download=true",
-      "md5": "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
-    },
-    {
-      "name": "[Others_4_898.mix",
-      "destination": "redist\\miles",
-      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/%5BOthers%204.898.mix",
-      "md5": "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
-    },
-    {
-      "name": "Ujapi Files.zip",
-      "destination": "",
-      "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip",
-      "md5": "BBB0ADEF925010CFA8A83BBEF08B0ED2"
-    },
-    {
-      "name": "UjAPILauncher.exe", 
-      "destination": "",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe",
-      "md5": "5758EBACDFE992B6E776E9A2E9747B73" 
-    },
-    {
-      "name": "Gproxy.zip",
-      "destination": "",
-      "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip",
-      "md5": "52153F3097BE6D6738164C4C14D33981"
-    }
-   ],
-  "launcher_update": {
-    "latest_version": "1.4",
-    "update_url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/launcher.exe"
-  }
+﻿{
+    "current_patch_version":  "1.3.0",
+    "patch_files":  [
+                        {
+                            "name":  "ChoiceModels_3.3.mix",
+                            "destination":  "redist\\miles",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceModels_3.3.mix?download=true",
+                            "md5":  "BF2EE22E40A87176801791A27056692A"
+                        },
+                        {
+                            "name":  "MusicForChoiceBattle.mix",
+                            "destination":  "redist\\miles",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/MusicForChoiceBattle.mix?download=true",
+                            "md5":  "E1061949F691A640D98C50828938E117"
+                        },
+                        {
+                            "name":  "ChoiceSounds_3.3.mix",
+                            "destination":  "redist\\miles",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceSounds_3.3.mix?download=true",
+                            "md5":  "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
+                        },
+                        {
+                            "name":  "[Others_4_898.mix",
+                            "destination":  "redist\\miles",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/%5BOthers%204.898.mix",
+                            "md5":  "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
+                        },
+                        {
+                            "name":  "Ujapi Files.zip",
+                            "destination":  "",
+                            "action":  "unzip",
+                            "url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPIFiles.zip",
+                            "md5":  "BBB0ADEF925010CFA8A83BBEF08B0ED2"
+                        },
+                        {
+                            "name":  "UjAPILauncher.exe",
+                            "destination":  "",
+                            "url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/UjAPILauncher.exe",
+                            "md5":  "5758EBACDFE992B6E776E9A2E9747B73"
+                        },
+                        {
+                            "name":  "Gproxy.zip",
+                            "destination":  "",
+                            "action":  "unzip",
+                            "url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip",
+                            "md5":  "52153F3097BE6D6738164C4C14D33981"
+                        }
+                    ],
+    "launcher_update":  {
+                            "latest_version":  "1.9.0",
+                            "update_url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/launcher.exe"
+                        }
 }

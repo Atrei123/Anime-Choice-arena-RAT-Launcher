@@ -1,22 +1,22 @@
-{
-  "current_patch_version": "1.2.7",
-  "patch_files": [
-    {
-      "name": "PatchRebirthv1.2.7.mix",
-      "destination": "redist\\miles",
-      "url": "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/PatchRebirthv1.2.7.mix",
-      "md5": ""
-    },
-    {
-      "name": "Gproxy.zip",
-      "destination": "",
-      "action": "unzip",
-      "url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip",
-      "md5": ""
-    }
-  ],
-  "launcher_update": {
-    "latest_version": "1.4",
-    "update_url": "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/launcher.exe"
-  }
+﻿{
+    "current_patch_version":  "1.2.7",
+    "patch_files":  [
+                        {
+                            "name":  "PatchRebirthv1.2.7.mix",
+                            "destination":  "redist\\miles",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/PatchRebirthv1.2.7.mix",
+                            "md5":  ""
+                        },
+                        {
+                            "name":  "Gproxy.zip",
+                            "destination":  "",
+                            "action":  "unzip",
+                            "url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/gproxy.zip",
+                            "md5":  ""
+                        }
+                    ],
+    "launcher_update":  {
+                            "latest_version":  "1.9.0",
+                            "update_url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/launcher.exe"
+                        }
 }
