@@ -47,7 +47,7 @@
                         }
                     ],
     "launcher_update":  {
-                            "latest_version":  "2.0.0",
-                            "update_url":  "https://github.com/Atrei123/Anime-Choice-arena-RAT-Launcher/raw/refs/heads/main/launcher.exe"
+                            "latest_version":  "2.1.0",
+                            "update_url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/launcher.exe"
                         }
 }
