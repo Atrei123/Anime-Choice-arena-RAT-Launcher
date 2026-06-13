@@ -6,8 +6,16 @@ import subprocess
 import json
 import sys
 import requests
+import urllib3
 from urllib.parse import urljoin, unquote
 from datetime import datetime
+
+# ВРЕМЕННО (июнь 2026): у replays.irinabot.ru истёк TLS-сертификат, авто-продление
+# на их стороне не сработало. Пока не починят — пропускаем проверку сертификата ТОЛЬКО
+# для запросов к irinabot (на Google Apps Script это не влияет). Верни VERIFY_IRINA = True,
+# когда сертификат обновят.
+VERIFY_IRINA = False
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # --- НАСТРОЙКИ ---
 IRINA_URL = "https://replays.irinabot.ru/19374/"
@@ -270,7 +278,7 @@ def run_cycle():
     
     print(f"🌍 Сканируем {IRINA_URL}...")
     try:
-        r = requests.get(IRINA_URL, timeout=15)
+        r = requests.get(IRINA_URL, timeout=15, verify=VERIFY_IRINA)
         links = re.findall(r'href="([^"]+\.w3g)"', r.text)
         unique_links = list(set(links))
         
@@ -309,7 +317,7 @@ def run_cycle():
             
             print(f"⬇️ Скачивание: {decoded_name}")
             try:
-                with requests.get(file_url, stream=True, timeout=20) as rf:
+                with requests.get(file_url, stream=True, timeout=20, verify=VERIFY_IRINA) as rf:
                     rf.raise_for_status()
                     with open(local_path, 'wb') as f:
                         for chunk in rf.iter_content(chunk_size=8192):
