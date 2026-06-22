@@ -1,5 +1,5 @@
 ﻿{
-    "current_patch_version":  "4.8.999",
+    "current_patch_version":  "4.8.9999",
     "patch_files":  [
                         {
                             "name":  "ChoiceModels_3.3.mix",
@@ -20,9 +20,9 @@
                             "md5":  "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
                         },
                         {
-                            "name":  "[Others_4_899.mix",
+                            "name":  "[Others_4_8999.mix",
                             "destination":  "redist\\miles",
-                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/%5BOthers%204.899.mix",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/%5BOthers%204.8999.mix",
                             "md5":  "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
                         },
                         {
