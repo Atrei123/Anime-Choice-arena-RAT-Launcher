@@ -47,7 +47,7 @@
                         }
                     ],
     "launcher_update":  {
-                            "latest_version":  "2.3.0",
-                            "update_url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/RbLauncher-v2.3.0.exe"
+                            "latest_version":  "2.4.0",
+                            "update_url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/RbLauncher-v2.4.0.exe"
                         }
 }
