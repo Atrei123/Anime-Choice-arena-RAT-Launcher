@@ -1,10 +1,10 @@
 ﻿{
-    "current_patch_version":  "1.2.7",
+    "current_patch_version":  "3.0",
     "patch_files":  [
                         {
-                            "name":  "PatchRebirthv1.2.7.mix",
+                            "name":  "PatchNL3.0.mix",
                             "destination":  "redist\\miles",
-                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/PatchRebirthv1.2.7.mix",
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/PatchNL3.0.mix",
                             "md5":  ""
                         },
                         {
