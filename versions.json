@@ -46,6 +46,16 @@
                             "md5":  "52153F3097BE6D6738164C4C14D33981"
                         }
                     ],
+    "obsolete_files":  [
+                        {
+                            "name":  "ChoiceModels_3.3.mix",
+                            "destination":  "redist\\miles"
+                        },
+                        {
+                            "name":  "ChoiceSounds_3.3.mix",
+                            "destination":  "redist\\miles"
+                        }
+                      ],
     "launcher_update":  {
                             "latest_version":  "2.5.3",
                             "update_url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/RbLauncher.exe"
