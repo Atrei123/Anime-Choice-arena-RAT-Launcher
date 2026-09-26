@@ -2,10 +2,10 @@
     "current_patch_version":  "4.8.9999",
     "patch_files":  [
                         {
-                            "name":  "ChoiceModels_3.3.mix",
+                            "name":  "ChoiceModels_3.7.mix",
                             "destination":  "redist\\miles",
-                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceModels_3.3.mix?download=true",
-                            "md5":  "BF2EE22E40A87176801791A27056692A"
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceModels_3.7%20(2).mix?download=true",
+                            "md5":  "98A7234C7B32B31626A8767A35C83213"
                         },
                         {
                             "name":  "MusicForChoiceBattle.mix",
@@ -14,10 +14,10 @@
                             "md5":  "E1061949F691A640D98C50828938E117"
                         },
                         {
-                            "name":  "ChoiceSounds_3.3.mix",
+                            "name":  "ChoiceSounds_3.7.mix",
                             "destination":  "redist\\miles",
-                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceSounds_3.3.mix?download=true",
-                            "md5":  "6B8B0C6AD31B2DB2EEAEFD28B5A1A730"
+                            "url":  "https://huggingface.co/datasets/AlTrOn227/ChoiceArena-Files/resolve/main/ChoiceSounds_3.7%20(2).mix?download=true",
+                            "md5":  "6CFFD6634D175F4958C34C93E9D17174"
                         },
                         {
                             "name":  "[Others_4_905.mix",
